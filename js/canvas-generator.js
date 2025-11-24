@@ -283,8 +283,8 @@ class CanvasGenerator {
         this.ctx.fillText("St Anne's Trade & Job Fair", centerX, currentY);
         currentY += 55;
 
-        // Enhanced edition badge with Christmas Bonanza
-        const badgeWidth = 320;
+        // Enhanced edition badge with Christmas Bonanza - UPDATED FORMAT
+        const badgeWidth = 340;
         const badgeHeight = 65;
         const badgeX = centerX - badgeWidth / 2;
         const badgeY = currentY - 45;
@@ -301,10 +301,10 @@ class CanvasGenerator {
         this.ctx.font = 'bold 22px Arial, sans-serif';
         this.ctx.fillText('2ND EDITION', centerX, currentY - 17);
         
-        // "(Christmas Bonanza)" text
+        // "- Christmas Bonanza" text (CHANGED from parentheses to dash)
         this.ctx.fillStyle = theme.secondaryText;
         this.ctx.font = 'italic 18px Arial, sans-serif';
-        this.ctx.fillText('(Christmas Bonanza)', centerX, currentY + 8);
+        this.ctx.fillText('- Christmas Bonanza', centerX, currentY + 8);
     }
 
     /**
