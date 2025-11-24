@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate promotional materials for St Anne's Parish Trade & Job Fair">
+    <title>St Anne's Trade & Job Fair - Vendor Promotion Generator</title>
+    
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📢 Vendor Promotion Generator</h1>
+            <p class="subtitle">St Anne's Parish Trade & Job Fair - November 30, 2025</p>
+            <p class="edition-badge">2ND EDITION - CHRISTMAS BONANZA</p>
+        </header>
+
+        <form id="cardForm">
+            <!-- Name Input -->
+            <div class="form-group">
+                <label for="name">Your Name <span class="required">*</span></label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Role Dropdown -->
+            <div class="form-group">
+                <label for="role">Your Role <span class="required">*</span></label>
+                <select id="role" required>
+                    <option value="">Select your role</option>
+                    <option value="CEO">CEO</option>
+                    <option value="Director">Director</option>
+                    <option value="Founder">Founder</option>
+                    <option value="Co-Founder">Co-Founder</option>
+                    <option value="Managing Director">Managing Director</option>
+                    <option value="Representative">Representative</option>
+                    <option value="Owner">Owner</option>
+                    <option value="Manager">Manager</option>
+                </select>
+            </div>
+
+            <!-- Entity Type Dropdown -->
+            <div class="form-group">
+                <label for="entityType">Entity Type <span class="required">*</span></label>
+                <select id="entityType" required>
+                    <option value="">Select entity type</option>
+                    <option value="Business">Business</option>
+                    <option value="Company">Company</option>
+                    <option value="Enterprise">Enterprise</option>
+                    <option value="Venture">Venture</option>
+                    <option value="Organization">Organization</option>
+                    <option value="Brand">Brand</option>
+                    <option value="Startup">Startup</option>
+                </select>
+            </div>
+
+            <!-- Business Name Input -->
+            <div class="form-group">
+                <label for="business">
+                    <span id="entityLabel">Business</span> Name <span class="required">*</span>
+                </label>
+                <input type="text" id="business" placeholder="Enter your business name" required>
+            </div>
+
+            <!-- Photo Upload -->
+            <div class="form-group">
+                <label>Upload Your Photo/Logo <span class="required">*</span></label>
+                <div class="file-input-wrapper">
+                    <input type="file" id="photo" accept="image/*" required>
+                </div>
+                <div class="file-name" id="fileName"></div>
+                <p class="hint">Recommended: Square image, at least 500x500px</p>
+            </div>
+
+            <!-- Image Cropper Section (Hidden initially) -->
+            <div id="cropperSection" class="cropper-section" style="display: none;">
+                <label>Adjust Your Image</label>
+                <div class="cropper-container">
+                    <img id="cropperImage" src="" alt="Image to crop">
+                </div>
+                <div class="cropper-controls">
+                    <button type="button" id="zoomIn" class="btn-icon">🔍+</button>
+                    <button type="button" id="zoomOut" class="btn-icon">🔍-</button>
+                    <button type="button" id="rotateLeft" class="btn-icon">↺</button>
+                    <button type="button" id="rotateRight" class="btn-icon">↻</button>
+                    <button type="button" id="reset" class="btn-secondary">Reset</button>
+                </div>
+            </div>
+
+            <button type="submit" id="generateBtn">
+                <span id="btnText">Generate Promotion</span>
+                <span id="btnLoader" class="loader" style="display: none;"></span>
+            </button>
+        </form>
+
+        <!-- Preview Section -->
+        <div id="preview" style="display: none;">
+            <h2>Your Promotional Image</h2>
+            <div class="preview-container">
+                <canvas id="previewCanvas"></canvas>
+            </div>
+            <button class="download-btn" id="downloadBtn">📥 Download Image</button>
+            <button class="btn-secondary" id="regenerateBtn">🔄 Generate Another</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Generating your promotion...</p>
+        </div>
+    </div>
+
+    <!-- Cropper.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="js/canvas-generator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
