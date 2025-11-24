@@ -154,6 +154,57 @@ input[type="file"]:hover {
 }
 
 /* ===================================
+   TEMPLATE SELECTOR STYLES
+   =================================== */
+.template-selector {
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    margin-top: 10px;
+}
+
+.template-selector label {
+    color: #6B2C1F;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.template-selector select {
+    background: white;
+    border: 2px solid #C8A961;
+    font-weight: 500;
+}
+
+.template-selector .hint {
+    color: #666;
+    margin-top: 10px;
+}
+
+.template-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border-left: 4px solid #C8A961;
+}
+
+.template-info h3 {
+    color: #6B2C1F;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.template-info p {
+    color: #666;
+    font-size: 14px;
+}
+
+.template-info strong {
+    color: #6B2C1F;
+}
+
+/* ===================================
    CROPPER SECTION
    =================================== */
 .cropper-section {
@@ -308,6 +359,20 @@ button[type="submit"]:disabled {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
+.preview-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.preview-hint {
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+    margin-top: 15px;
+    font-style: italic;
+}
+
 /* ===================================
    LOADING STATES
    =================================== */
@@ -414,5 +479,9 @@ button[type="submit"]:disabled {
     .btn-secondary {
         font-size: 14px;
         padding: 12px;
+    }
+
+    .template-selector {
+        padding: 15px;
     }
 }

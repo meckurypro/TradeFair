@@ -1,12 +1,13 @@
 /**
- * Main Application Logic
- * Handles form interactions, image cropping, and canvas generation
+ * Main Application Logic with Template Support
+ * Handles form interactions, image cropping, template selection, and canvas generation
  */
 
 // Global variables
 let cropper = null;
 let canvasGenerator = null;
 let uploadedImageSrc = null;
+let selectedTemplate = 'dark-elegance';
 
 // DOM Elements
 const form = document.getElementById('cardForm');
@@ -23,6 +24,8 @@ const regenerateBtn = document.getElementById('regenerateBtn');
 const loadingOverlay = document.getElementById('loadingOverlay');
 const entityTypeSelect = document.getElementById('entityType');
 const entityLabel = document.getElementById('entityLabel');
+const templateSelect = document.getElementById('template');
+const templatePreviewSection = document.getElementById('templatePreview');
 
 // Cropper control buttons
 const zoomInBtn = document.getElementById('zoomIn');
@@ -41,7 +44,27 @@ function init() {
     // Set up event listeners
     setupEventListeners();
     
-    console.log('Parish Trade Fair App initialized');
+    // Populate template dropdown
+    populateTemplateDropdown();
+    
+    console.log('Parish Trade Fair App initialized with template support');
+}
+
+/**
+ * Populate template dropdown with available templates
+ */
+function populateTemplateDropdown() {
+    const templates = canvasGenerator.getAvailableTemplates();
+    
+    templates.forEach(template => {
+        const option = document.createElement('option');
+        option.value = template.id;
+        option.textContent = template.name;
+        templateSelect.appendChild(option);
+    });
+    
+    // Set default
+    templateSelect.value = selectedTemplate;
 }
 
 /**
@@ -53,6 +76,9 @@ function setupEventListeners() {
     
     // Entity type change - update label dynamically
     entityTypeSelect.addEventListener('change', updateEntityLabel);
+    
+    // Template selection change
+    templateSelect.addEventListener('change', handleTemplateChange);
     
     // Form submission
     form.addEventListener('submit', handleFormSubmit);
@@ -121,7 +147,7 @@ function initializeCropper(imageSrc) {
     
     // Initialize cropper with options
     cropper = new Cropper(cropperImage, {
-        aspectRatio: 1, // Square aspect ratio for circular display
+        aspectRatio: 1,
         viewMode: 2,
         dragMode: 'move',
         autoCropArea: 1,
@@ -165,6 +191,51 @@ function updateEntityLabel() {
 }
 
 /**
+ * Handle template selection change
+ */
+function handleTemplateChange(e) {
+    selectedTemplate = e.target.value;
+    
+    // Show visual feedback
+    showTemporaryMessage(`Template changed to: ${templateSelect.options[templateSelect.selectedIndex].text}`);
+    
+    // If preview is already generated, regenerate with new template
+    if (preview.style.display === 'block') {
+        regenerateWithNewTemplate();
+    }
+}
+
+/**
+ * Regenerate preview with new template
+ */
+async function regenerateWithNewTemplate() {
+    if (!cropper) return;
+    
+    showLoading(true);
+    
+    try {
+        // Get form data
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            role: document.getElementById('role').value,
+            entityType: document.getElementById('entityType').value,
+            business: document.getElementById('business').value.trim()
+        };
+        
+        // Get cropped image
+        const croppedImage = await getCroppedImage();
+        
+        // Generate with selected template
+        await canvasGenerator.generate(formData, croppedImage, selectedTemplate);
+        
+    } catch (error) {
+        console.error('Error regenerating with new template:', error);
+    } finally {
+        showLoading(false);
+    }
+}
+
+/**
  * Handle form submission
  */
 async function handleFormSubmit(e) {
@@ -197,8 +268,8 @@ async function handleFormSubmit(e) {
         // Get cropped image
         const croppedImage = await getCroppedImage();
         
-        // Generate the promotional image
-        await canvasGenerator.generate(formData, croppedImage);
+        // Generate the promotional image with selected template
+        await canvasGenerator.generate(formData, croppedImage, selectedTemplate);
         
         // Show preview
         showPreview();
@@ -245,6 +316,11 @@ function getCroppedImage() {
 function showPreview() {
     preview.style.display = 'block';
     
+    // Show template info
+    const templateName = templateSelect.options[templateSelect.selectedIndex].text;
+    const previewTitle = preview.querySelector('h2');
+    previewTitle.textContent = `Your Promotional Image (${templateName})`;
+    
     // Smooth scroll to preview
     setTimeout(() => {
         preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -260,10 +336,12 @@ function handleDownload() {
             .replace(/[^a-z0-9]/gi, '_')
             .toLowerCase();
         
-        const filename = `${businessName}_promotion.png`;
+        const templateName = selectedTemplate.replace('-', '_');
+        const filename = `${businessName}_${templateName}_promotion.png`;
+        
         canvasGenerator.download(filename);
         
-        // Show success message (optional)
+        // Show success message
         showTemporaryMessage('Image downloaded successfully!');
         
     } catch (error) {
@@ -366,4 +444,4 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
     init();
-      }
+}

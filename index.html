@@ -66,6 +66,18 @@
                 <input type="text" id="business" placeholder="Enter your business name" required>
             </div>
 
+            <!-- Template Selector - NEW -->
+            <div class="form-group">
+                <label for="template">Choose Design Template <span class="required">*</span></label>
+                <div class="template-selector">
+                    <select id="template" required>
+                        <option value="">Select a template style</option>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                    <p class="hint">Select your preferred design style for the promotional image</p>
+                </div>
+            </div>
+
             <!-- Photo Upload -->
             <div class="form-group">
                 <label>Upload Your Photo/Logo <span class="required">*</span></label>
@@ -115,6 +127,9 @@
             <p>Generating your promotion...</p>
         </div>
     </div>
+
+    <!-- Template Preview Section (Hidden, for future use) -->
+    <div id="templatePreview" style="display: none;"></div>
 
     <!-- Cropper.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
