@@ -1,0 +1,418 @@
+/* ===================================
+   RESET AND BASE STYLES
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #6B2C1F 0%, #4A1810 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* ===================================
+   CONTAINER
+   =================================== */
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   HEADER STYLES
+   =================================== */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: #6B2C1F;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.edition-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #C8A961 0%, #B8954D 100%);
+    color: #4A1810;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ===================================
+   FORM STYLES
+   =================================== */
+.form-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.required {
+    color: #d32f2f;
+}
+
+.hint {
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Input Fields */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+    border-color: #C8A961;
+    box-shadow: 0 0 0 3px rgba(200, 169, 97, 0.1);
+}
+
+select {
+    cursor: pointer;
+    background-color: white;
+}
+
+/* File Input */
+.file-input-wrapper {
+    position: relative;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 16px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background: #e8e8e8;
+    border-color: #C8A961;
+}
+
+.file-name {
+    margin-top: 8px;
+    color: #C8A961;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ===================================
+   CROPPER SECTION
+   =================================== */
+.cropper-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.cropper-container {
+    max-height: 400px;
+    margin: 15px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+#cropperImage {
+    max-width: 100%;
+    display: block;
+}
+
+.cropper-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.btn-icon {
+    padding: 10px 16px;
+    background: #6B2C1F;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: #4A1810;
+    transform: translateY(-2px);
+}
+
+.btn-icon:active {
+    transform: translateY(0);
+}
+
+/* ===================================
+   BUTTONS
+   =================================== */
+button[type="submit"],
+.download-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #6B2C1F 0%, #4A1810 100%);
+    color: #C8A961;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button[type="submit"]:hover,
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 44, 31, 0.3);
+}
+
+button[type="submit"]:active,
+.download-btn:active {
+    transform: translateY(0);
+}
+
+button[type="submit"]:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    width: 100%;
+    padding: 12px;
+    background: white;
+    color: #6B2C1F;
+    border: 2px solid #6B2C1F;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-secondary:hover {
+    background: #6B2C1F;
+    color: white;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #C8A961 0%, #B8954D 100%);
+    color: #4A1810;
+}
+
+/* ===================================
+   PREVIEW SECTION
+   =================================== */
+#preview {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #f0f0f0;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#preview h2 {
+    color: #6B2C1F;
+    margin-bottom: 20px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.preview-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#previewCanvas {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ===================================
+   LOADING STATES
+   =================================== */
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(200, 169, 97, 0.3);
+    border-top-color: #C8A961;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(200, 169, 97, 0.3);
+    border-top-color: #C8A961;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .cropper-container {
+        max-height: 300px;
+    }
+
+    .cropper-controls {
+        gap: 8px;
+    }
+
+    .btn-icon {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .edition-badge {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+
+    input[type="text"],
+    select {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    button[type="submit"],
+    .download-btn,
+    .btn-secondary {
+        font-size: 14px;
+        padding: 12px;
+    }
+}
