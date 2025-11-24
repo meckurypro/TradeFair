@@ -13,13 +13,10 @@ class CanvasGenerator {
 
     /**
      * Load the event logo (placeholder for now)
-     */
-    loadEventLogo() {
-        const logoImg = new Image();
-        logoImg.crossOrigin = "anonymous";
-        // Placeholder - replace with actual logo path later
-        logoImg.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iIzZCMkMxRiIvPjx0ZXh0IHg9Ijc1IiB5PSI4MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjIwIiBmaWxsPSIjQzhBOTYxIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MT0dPPC90ZXh0Pjwvc3ZnPg==';
-        
+     */loadEventLogo() {
+    const logoImg = new Image();
+    // No need for crossOrigin when loading from same domain
+    logoImg.src = 'assets/logo.png';
         logoImg.onload = () => {
             this.eventLogo = logoImg;
         };
